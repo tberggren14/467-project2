@@ -10,10 +10,10 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
-const product = require('./product');
-app.get('/getProducts', (req, res) => {
-  product.getAll((list) => {
-    res.render('products.ejs', { all: list });
+const parts = require('./parts');
+app.get('/getParts', (req, res) => {
+  parts.getAll((list) => {
+    res.render('parts.ejs', { all: list });
   });
 })
 
