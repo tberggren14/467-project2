@@ -10,14 +10,14 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
-const parts = require('./parts');
+const parts = require('./controllers/parts');
 app.get('/getParts', (req, res) => {
   parts.getAll((list) => {
     res.render('parts.ejs', { all: list });
   });
 })
 
-const credit = require('./credit');
+const credit = require('./controllers/credit');
 app.get('/processCC', (req, res) => {
   credit.processSample((result) => {
     res.render('credit.ejs', { data: result });
