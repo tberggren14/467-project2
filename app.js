@@ -17,6 +17,13 @@ app.get('/getParts', (req, res) => {
   });
 })
 
+const credit = require('./credit');
+app.get('/processCC', (req, res) => {
+  credit.processSample((result) => {
+    res.render('credit.ejs', { data: result });
+  });
+})
+
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
 })
