@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const mysql = require('mysql');
 
 const app = express()
 var port = process.env.PORT || 3000;
