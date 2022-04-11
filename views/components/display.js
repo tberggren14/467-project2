@@ -25,5 +25,4 @@ app.component('display', {
 
         }
     }
-
 })
