@@ -17,6 +17,20 @@ app.get('/getParts', (req, res) => {
   });
 })
 
+const credit = require('./controllers/warehouse');
+app.get('/getwarehouse', (req, res) => {
+  credit.processSample((result) => {
+    res.render('warehouse.ejs', { data: result });
+  });
+})
+
+const credit = require('./controllers/admin');
+app.get('/getadmin', (req, res) => {
+  credit.processSample((result) => {
+    res.render('admin.ejs', { data: result });
+  });
+})
+
 const credit = require('./controllers/credit');
 app.get('/processCC', (req, res) => {
   credit.processSample((result) => {
