@@ -16,13 +16,22 @@ app.component('display', {
 
     methods: {
         async getParts() {
-            var retr = await axios.get('http://localhost:3000/getParts')
-            this.parts = retr.data
+            var resp = await axios.get('http://localhost:3000/getParts')
+            this.parts = resp.data
         },
 
         async addtocart(part) {
             this.$emit('add-to-cart', part)
 
+        }
+    },
+
+    computed: {
+        list() {
+            if (this.parts == null) {
+                this.getParts()
+            }
+            return this.parts
         }
     }
 })
