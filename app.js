@@ -24,6 +24,14 @@ app.get('/processCC', (req, res) => {
   });
 })
 
+app.get('/warehouse', (req, res) => {
+  res.render('warehouse.ejs');
+})
+
+app.get('/admin', (req, res) => {
+  res.render('admin.ejs');
+})
+
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
 })
