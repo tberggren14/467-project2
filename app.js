@@ -1,23 +1,25 @@
 const express = require('express');
 const mysql = require('mysql');
+const axios = require('axios');
+
 
 const app = express()
 var port = process.env.PORT || 3000;
 
 
+const path = require('path')
+app.use(express.static(path.join(__dirname, 'public')));
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-
-app.use(express.static('/styles'));
 
 app.get('/', (req, res) => {
   res.render('index');
 })
 
-const parts = require('./controllers/parts');
+const part = require('./controllers/parts');
 app.get('/getParts', (req, res) => {
-  parts.getAll((list) => {
+  part.getAll((list) => {
     res.render('parts.ejs', { all: list });
   });
 })

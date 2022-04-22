@@ -6,10 +6,7 @@
   "scripts": {
     "start": "PORT=3100 node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RaimundEge/express-starter-product.git"
-  },
+  
   "author": "Raimund Ege",
   "dependencies": {
     "axios": "^0.21.0",
