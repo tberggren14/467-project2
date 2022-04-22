@@ -2,21 +2,30 @@
 
 <head>
     <title>Part List</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
 </head>
 
 <body>
-    <h3>List of all Parts:</h3>
+    <h3>Order Parts</h3>
+    <div class="nav-bar">
+        <li class="banner">Automotive part store</li>
+        <li class="item" v-on:click="content='list'"> Products available </li>
+        <li class="item" v-on:click="content='checkout'"> Cart </li>
+    </div>
     <il>
         <% for (part in all) { %>
             <li>
-            <%= all[part].number %>,
-            <%= all[part].description %>,
-            <%= all[part].price %>,
-            <%= all[part].weight %>,
-            <a href=<%= all[part].pictureURL %>>link</a>
+                <%= all[part].number %>,
+                    <%= all[part].description %>,
+                        <%= all[part].price %>,
+                            <%= all[part].weight %>,
+                                <a href=<%=all[part].pictureURL %>>link</a>
             </li>
-        <% }; %>
+            <% }; %>
     </il>
 </body>
+
+<script src="./views/components/display.js"></script>
+<script src="./views/components/checkout.js"></script>
 
 </html>

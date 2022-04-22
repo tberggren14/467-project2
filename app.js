@@ -9,6 +9,8 @@ var port = process.env.PORT || 3000;
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+app.use(express.static('/styles'));
+
 app.get('/', (req, res) => {
   res.render('index');
 })
@@ -28,9 +30,17 @@ app.get('/processCC', (req, res) => {
   });
 })
 
+app.get('/warehouse', (req, res) => {
+  res.render('warehouse.ejs');
+})
+
+app.get('/admin', (req, res) => {
+  res.render('admin.ejs');
+})
+
 app.get('/orders', (req, res) => {
   res.render('orders.ejs');
-});
+})
 
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
