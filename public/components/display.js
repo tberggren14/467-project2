@@ -1,10 +1,10 @@
-app.component('display', {
+const display = Vue.createApp({
     template:
         `<div class="display">
                 <input v-model="search" placeholder="search parts"> Search by Description   
                 <div v-if="search= ''"> Parts that match your search</div>
                 <div v-else>All parts available (use search bar to filter results)</div>
-                </input>
+
         </div>`,
 
     data() {
