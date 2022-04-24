@@ -15,7 +15,7 @@
         <li class="item" v-on:click="content='checkout'"> Cart </li>
     </div>
     <h3><br>Order Parts</h3>
-    <div class="display">
+    <div v-model:class="display">
         <input placeholder="search"> Filter by Part Description
         <div v-if="search!= ''">List of parts that match your query:</div>
         <div v-else>All parts (enter search criteria above to filter results)</div><br>
