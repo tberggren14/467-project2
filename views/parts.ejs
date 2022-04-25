@@ -17,23 +17,15 @@
     </div>
     <h3><br>Order Parts</h3>
     <div id="display"></div>
-    <il>
-        <% for (part in all) { %>
-            <li>
-                <%= all[part].description %>,
-                    <%= all[part].price %>,
-                        <%= all[part].weight %>,
-                            <a href=<%=all[part].pictureURL %>>link</a>
-            </li>
-            <% }; %>
-    </il>
-
+    <div id="part"></div>
+   
 
     <script src="components/display.js"></script>
-    <script src="components/checkout.js"></script>
     <script src="components/product.js"></script>
+    <script src="components/checkout.js"></script>
     <script>
-        const mountedApp = display.mount('#display')
+        const mountedDisplay = display.mount('#display')
+        const mountedPart = part.mount('#part')
     </script>
 </body>
 

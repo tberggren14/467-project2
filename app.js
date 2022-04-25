@@ -2,7 +2,6 @@ const express = require('express');
 const mysql = require('mysql');
 const axios = require('axios');
 
-
 const app = express()
 var port = process.env.PORT || 3000;
 
@@ -20,7 +19,7 @@ app.get('/', (req, res) => {
 const part = require('./controllers/parts');
 app.get('/getParts', (req, res) => {
   part.getAll((list) => {
-    res.render('parts.ejs', { all: list });
+    res.render('parts.ejs');
   });
 })
 
