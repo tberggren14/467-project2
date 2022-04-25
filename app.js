@@ -44,6 +44,10 @@ app.get('/orders', (req, res) => {
   res.render('orders.ejs');
 })
 
+app.get('/index', (req, res) => {
+  res.render('index.ejs')
+})
+
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
 })
