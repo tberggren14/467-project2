@@ -31,18 +31,25 @@ app.get('/processCC', (req, res) => {
   });
 })
 
+// Route for warehouse page
 app.get('/warehouse', (req, res) => {
   res.render('warehouse.ejs');
 })
 
+// Route for admin page
 app.get('/admin', (req, res) => {
   res.render('admin.ejs');
 })
 
+// Route for order page
+const order = require('./controllers/order');
 app.get('/orders', (req, res) => {
-  res.render('orders.ejs');
+  order.getAll((list) => {
+    res.render('orders.ejs', {all: list});
+  });
 })
 
+// Route for index page
 app.get('/index', (req, res) => {
   res.render('index.ejs')
 })
