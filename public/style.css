@@ -4,11 +4,10 @@
     right: 5px;
     left: 5px;
     background-color: lightblue;
-    border: black;
+    border: 3px black;
     border-width: medium;
     height: 35px;
     z-index: 10;
-
 }
 
 .nav-bar li {
@@ -16,22 +15,12 @@
     display:  inline;
     zoom: auto;
     list-style-type: none;
-    margin: 1;
-    padding: 0;
-}
-
-.banner {
-    color: black;
-
-}
-
-.item {
-    color: black;
-
+    margin: 3px;
+    padding: 3px;
 }
 
 .item:hover {
-    border: black;
+    border: 1px black;
     cursor: pointer;
 
 }
@@ -52,3 +41,27 @@ body {
     text-align: center;
     font-size: xx-large;
 }
+
+button {
+   margin: 10px;
+}
+
+.part {
+      margin: 10px;
+      padding: 10x;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+}
+.part:hover {
+      background-color:rgb(150, 149, 149); 
+}
+
+.information {
+      display: flex;
+      width: 20px;
+      margin: 20px;
+      text-align: center;
+}
+
+

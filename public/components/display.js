@@ -1,4 +1,4 @@
-const display = Vue.createApp({
+app.component('display', {
     template:
         `<div class="display">
                 <input v-model="search" placeholder="search parts"> Search by Description   

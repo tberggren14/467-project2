@@ -12,7 +12,6 @@ module.exports = {
     getAll: async result => {
         connection.query('SELECT * FROM parts', function(err, rows){
             if (err) throw err;
-            console.log('rows: ', rows);
             result(rows);
         });
     }

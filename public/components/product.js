@@ -1,20 +1,34 @@
-const part = Vue.createApp({
+app.component('product', {
     template:
         `<div class="part">
-         <img :src=part.pictureURL>
+         <img :src = "part.pictureURL" >
          <div class="information">
-         {{part.description}} <br>
-         \${{part.price}}<br>
-         {{part.weight}}<br>
-        </div> 
-    </div >`,/* need to add part.quantity*/
+          {{part.description}}
+         \${{part.price}}
+         {{part.weight}} lbs
+        </div>
+        <div class="addButton">
+        <label for=" quantity"> Quantity </label> <input id="quantity" v-model="quantity">
+        <button v-on:click="addToCart(part)">Add to Cart</button>
+        </div>
+    </div>`
+
+    ,/* need to add part.quantity*/
     /*need to add button for ordering but do not have quantity*/
+    props: {
+        part: {
+            type: Object,
+            required: true,
+
+        },
+    },
 
     data() {
         return {
-            quantity: (this.type === 'ordering' && this.part.quantity > 0)
-
+            quantity: (this.part.quantity > 0),
+            part: Object
         }
+
     },
 
     methods: {
@@ -25,7 +39,7 @@ const part = Vue.createApp({
                 return
             }
             else {
-                let orderingPart = {part}
+                let orderingPart = { part }
                 orderingPart.quantity = amount
                 this.$emit('add-to-cart', orderingPart)
             }
@@ -33,4 +47,6 @@ const part = Vue.createApp({
 
 
     }
-})
+});
+
+

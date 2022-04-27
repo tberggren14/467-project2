@@ -3,29 +3,49 @@
 
 <head>
     <title>Part List</title>
-    <!--Put the style css in this file-->
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <script src="https://unpkg.com/vue@next"></script>
 
 </head>
 
 <body>
-    <div class="nav-bar">
-        <li class="banner">Automotive part store </li>
-        <li class="item" v-on:click="content='list'"> Products available </li>
-        <li class="item" v-on:click="content='checkout'"> Cart </li>
-    </div>
-    <h3><br>Order Parts</h3>
-    <div id="display"></div>
-    <div id="part"></div>
-   
+    <div id="app">
+        <div class="nav-bar">
+            <li class="banner">Automotive part store </li>
+            <li class="item" @click="content='list'"> Products available </li>
+            <li class="item" @click="content='checkout'"> Cart </li>
+        </div>
+        <h3><br>Order Parts</h3>
+        <display>
+        </display>
+        <% for (part in all) { %>
+            <product-part>
+                <div class="part">
+                <img src=<%=all[part].pictureURL %>>
+                <%= all[part].description %>
+                    $<%= all[part].price %>
+                        <%= all[part].weight %>lbs
+                        <div class="addButton">
+                            <label for=" quantity" style="margin-left: 25px;">Quantity </label>
+                            <input id="quantity" size="1">
+                            <button v-on:click="updateTheCart(part)"> Add to cart</button>
+                        </div>
+                        </div>
 
-    <script src="components/display.js"></script>
-    <script src="components/product.js"></script>
-    <script src="components/checkout.js"></script>
+            </product>
+            <% }; %>
+            
+    </div>
+
+
+    <script src="/main.js"></script>
+
+    <script src="/components/display.js"></script>
+<!--   <script src="/components/checkout.js"></script> -->
+    <script src="/components/product.js"></script>
+
     <script>
-        const mountedDisplay = display.mount('#display')
-        const mountedPart = part.mount('#part')
+        const mountedApp = app.mount('#app')
     </script>
 </body>
 

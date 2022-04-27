@@ -1,14 +1,18 @@
 const app = Vue.createApp({
+        
     data() {
         return {
             cart: [],
-            content: "productList",
+            content: "List",
+            //part: this.data
 
         }
     },
     methods: {
         updateTheCart(part) {
+            console.log('added to cart')
             this.cart.push(part)
+            console.log(this.part)
         },
 
         deleteFromCart(part) {
@@ -20,7 +24,11 @@ const app = Vue.createApp({
                 }
             }
         },
-    }
-})
+    },
 
-app.mount('#app')
+});
+
+app.component('display');
+//app.component('checkout');
+app.component('product');
+

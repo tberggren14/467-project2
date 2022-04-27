@@ -12,14 +12,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.render('index');
 })
 
 const part = require('./controllers/parts');
 app.get('/getParts', (req, res) => {
-  part.getAll((list) => {
-    res.render('parts.ejs');
+  part.getAll((products) => {
+    productArray = Object.values(JSON.parse(JSON.stringify(products)))
+    res.render('parts.ejs', { all : productArray });
+    //console.log(productArray[0].description)
+    
   });
 })
 
@@ -45,7 +50,7 @@ app.get('/admin', (req, res) => {
 const order = require('./controllers/order');
 app.get('/orders', (req, res) => {
   order.getAll((list) => {
-    res.render('orders.ejs', {all: list});
+    res.render('orders.ejs', { all: list });
   });
 })
 
