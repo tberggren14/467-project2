@@ -6,7 +6,7 @@
     background-color: lightblue;
     border: 3px black;
     border-width: medium;
-    height: 35px;
+    height: 40px;
     z-index: 10;
 }
 
@@ -20,7 +20,6 @@
 }
 
 .item:hover {
-    border: 1px black;
     cursor: pointer;
 
 }
@@ -62,6 +61,26 @@ button {
       width: 20px;
       margin: 20px;
       text-align: center;
+}
+
+.cartButton {
+  padding: 25px 25px;
+  font-size: 20px;
+  float: right;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 9px #999;
+}
+.cartButton:hover {background-color: blue}
+
+.cartButton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px black;
+  transform: translateY(4px);
 }
 
 

@@ -59,6 +59,10 @@ app.get('/index', (req, res) => {
   res.render('index.ejs')
 })
 
+app.get('/checkout', (req, res) => {
+  res.render('checkout.ejs');
+})
+
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
 })

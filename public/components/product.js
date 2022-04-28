@@ -1,52 +1,34 @@
 app.component('product', {
     template:
-        `<div class="part">
-         <img :src = "part.pictureURL" >
-         <div class="information">
-          {{part.description}}
-         \${{part.price}}
-         {{part.weight}} lbs
-        </div>
-        <div class="addButton">
-        <label for=" quantity"> Quantity </label> <input id="quantity" v-model="quantity">
-        <button v-on:click="addToCart(part)">Add to Cart</button>
-        </div>
-    </div>`
-
-    ,/* need to add part.quantity*/
-    /*need to add button for ordering but do not have quantity*/
+        /*html*/
+        `<div class="part">         
+                 <img :src = "part.pictureURL" >
+                <div class="info">
+                   {{part.description}}<br>
+                   \${{ part.price }} <br>
+                   {{ part.weight }}lbs <br>
+                   Quantity on hand: {{ part.quantity }}
+                </div>                 
+                <label for="quantity">Quantity:</label><input id="quantity" size=1 :="quantity">                            
+                <button v-on:click="addToCart(part)" :disabled="quantity==0">Add to cart</button>                          
+         </div>`,
     props: {
         part: {
             type: Object,
-            required: true,
-
-        },
+            required: true
+        }
     },
-
+    
     data() {
         return {
-            quantity: (this.part.quantity > 0),
-            part: Object
+            quantity: this.quantity,
+            
         }
-
     },
-
     methods: {
         async addToCart(part) {
-            var amount = parseInt(this.quantity)
-            if (amount > part.quantity) {
-                alert("Amount requested to order is more than the amount we have")
-                return
-            }
-            else {
-                let orderingPart = { part }
-                orderingPart.quantity = amount
-                this.$emit('add-to-cart', orderingPart)
-            }
-        }
-
-
-    }
-});
-
-
+            console.log(part)
+        },
+        
+    },
+})

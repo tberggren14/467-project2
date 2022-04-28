@@ -1,4 +1,6 @@
 const app = Vue.createApp({
+
+    el:"#app",
         
     data() {
         return {
@@ -8,11 +10,11 @@ const app = Vue.createApp({
 
         }
     },
+    
     methods: {
         updateTheCart(part) {
-            console.log('added to cart')
             this.cart.push(part)
-            console.log(this.part)
+            console.log(this.cart)
         },
 
         deleteFromCart(part) {
@@ -24,6 +26,7 @@ const app = Vue.createApp({
                 }
             }
         },
+
     },
 
 });

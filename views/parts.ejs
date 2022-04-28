@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Part List</title>
+    <title>parts List</title>
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <script src="https://unpkg.com/vue@next"></script>
 
@@ -11,39 +11,26 @@
 <body>
     <div id="app">
         <div class="nav-bar">
-            <li class="banner">Automotive part store </li>
-            <li class="item" @click="content='list'"> Products available </li>
-            <li class="item" @click="content='checkout'"> Cart </li>
+            <li class="banner">Automotive parts store </li>
+            <a href="/getParts"><li class="item"> Products available </li></a>
+            <a href="/checkout"><li class="item"> Cart </li></a>
         </div>
-        <h3><br>Order Parts</h3>
+        <a href="/checkout"><button class="cartButton"> Cart {{cart.length}} </button></a>
+        <h3><br> Order parts</h3>
         <display>
         </display>
         <% for (part in all) { %>
-            <product-part>
-                <div class="part">
-                <img src=<%=all[part].pictureURL %>>
-                <%= all[part].description %>
-                    $<%= all[part].price %>
-                        <%= all[part].weight %>lbs
-                        <div class="addButton">
-                            <label for=" quantity" style="margin-left: 25px;">Quantity </label>
-                            <input id="quantity" size="1">
-                            <button v-on:click="updateTheCart(part)"> Add to cart</button>
-                        </div>
-                        </div>
-
+            <product v-bind:part="<%= JSON.stringify(all[part]) %>">
             </product>
-            <% }; %>
-            
+                <% }; %>
     </div>
 
 
     <script src="/main.js"></script>
 
     <script src="/components/display.js"></script>
-<!--   <script src="/components/checkout.js"></script> -->
+    <!--   <script src="/components/checkout.js"></script> -->
     <script src="/components/product.js"></script>
-
     <script>
         const mountedApp = app.mount('#app')
     </script>
