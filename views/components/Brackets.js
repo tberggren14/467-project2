@@ -20,7 +20,7 @@ app.component('brackets', {
 
         async newBrackets() {
             if (this.weight === '' || this.cost === '') {
-                alert('Please put in the wieght and cost for the item.')
+                alert('Please put in the weight and cost for the item.')
                 return
             }
         }
