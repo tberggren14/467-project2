@@ -2,12 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const axios = require('axios');
 
+
 const app = express()
 var port = process.env.PORT || 3000;
 
 
 const path = require('path')
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -18,13 +20,12 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
+var cart = [];
 const part = require('./controllers/parts');
 app.get('/getParts', (req, res) => {
   part.getAll((products) => {
     productArray = Object.values(JSON.parse(JSON.stringify(products)))
-    res.render('parts.ejs', { all : productArray });
-    //console.log(productArray[0].description)
-    
+    res.render('parts.ejs', { all: productArray });
   });
 })
 
@@ -48,6 +49,8 @@ app.get('/admin', (req, res) => {
 
 // Route for order page
 const order = require('./controllers/order');
+const { regexpToText } = require('nodemon/lib/utils');
+const { isBuffer } = require('util');
 app.get('/orders', (req, res) => {
   order.getAll((list) => {
     res.render('orders.ejs', { all: list });
@@ -60,7 +63,15 @@ app.get('/index', (req, res) => {
 })
 
 app.get('/checkout', (req, res) => {
-  res.render('checkout.ejs');
+  //console.log(cart)
+  res.render('checkout.ejs', { cart })
+})
+
+
+app.post('/getParts', (req, res) => {
+  //res.redirect('/checkout')
+  cart = req.body.cart;
+  res.render('checkout.ejs',{cart})
 })
 
 app.listen(port, () => {

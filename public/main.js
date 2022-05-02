@@ -1,37 +1,38 @@
 const app = Vue.createApp({
 
-    el:"#app",
-        
+    el: "#app",
     data() {
         return {
             cart: [],
-            content: "List",
             //part: this.data
 
         }
     },
     
-    methods: {
-        updateTheCart(part) {
-            this.cart.push(part)
-            console.log(this.cart)
-        },
 
-        deleteFromCart(part) {
-            var currentCart = this.cart;
+    methods: {
+         updateCart(part) {
+            this.cart.push(part)
+            axios.post('http://localhost:3000/getParts', {
+                cart: this.cart,
+            });
+        },
+        removeCart(part) {
+            var temp = this.cart;
             this.cart = [];
-            for (let c of currentCart) {
-                if (c !== part) {
-                    this.cart.push(c)
+            for (x of temp) {
+                if (x !== part) {
+                    this.cart.push(x)
                 }
             }
+            // console.log(this.cart)
         },
-
     },
+})
 
-});
 
-app.component('display');
-//app.component('checkout');
-app.component('product');
+
+app.component('searchbar');
+app.component('checkout');
+app.component('productlist');
 

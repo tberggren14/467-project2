@@ -5,6 +5,7 @@
     <title>parts List</title>
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -12,25 +13,30 @@
     <div id="app">
         <div class="nav-bar">
             <li class="banner">Automotive parts store </li>
-            <a href="/getParts"><li class="item"> Products available </li></a>
-            <a href="/checkout"><li class="item"> Cart </li></a>
+            <a href="/getParts">
+                <li class="item"> Products available </li>
+            </a>
+            <a href="/checkout">
+                <li class="item"> Cart </li>
+            </a>
         </div>
-        <a href="/checkout"><button class="cartButton"> Cart {{cart.length}} </button></a>
+        <a href="/checkout"> <button class="cartButton"> Cart {{cart.length}} </button></a>
         <h3><br> Order parts</h3>
-        <display>
-        </display>
+
+        <searchbar>
+        </searchbar>
         <% for (part in all) { %>
-            <product v-bind:part="<%= JSON.stringify(all[part]) %>">
-            </product>
-                <% }; %>
+            <productlist v-bind:part="<%= JSON.stringify(all[part]) %>" @add-To-Cart="updateCart">
+            </productlist>
+            <% }; %>
     </div>
 
 
     <script src="/main.js"></script>
 
-    <script src="/components/display.js"></script>
-    <!--   <script src="/components/checkout.js"></script> -->
-    <script src="/components/product.js"></script>
+    <script src="/components/searchbar.js"></script>
+    <script src="/components/checkout.js"></script>
+    <script src="/components/productlist.js"></script>
     <script>
         const mountedApp = app.mount('#app')
     </script>
