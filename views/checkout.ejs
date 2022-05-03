@@ -21,7 +21,7 @@
             </a>
         </div>
         <h3><br>Checkout</h3>
-        <checkout v-bind:cart="<%=JSON.stringify(cart) %>" @remove="removeCart"></checkout>
+        <checkout :cart="<%=JSON.stringify(cart) %>" @remove-Item="removeCart"></checkout>
 
     </div>
 

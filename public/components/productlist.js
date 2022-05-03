@@ -3,13 +3,10 @@ app.component('productlist', {
         /*html*/
         `<div class="part">         
                  <img :src = "part.pictureURL" >
-                <div class="info">
                    {{part.description}}<br>
                    \${{ part.price }} <br>
                    {{ part.weight }}lbs <br>
-                  Available: {{ part.quantity }}
-                </div>                 
-                <label for="quantity">Quantity:</label><input id="quantity" size=1 :="quantity">                          
+                  Available: {{ part.quantity }}                                          
                 <button @click=addToCart(part) >Add to cart</button> 
                                
          </div>`,
@@ -28,8 +25,6 @@ app.component('productlist', {
     },
     methods: {
         async addToCart(part) {
-            var amount = parseInt(this.amount)
-           // this.$emit('addToCart', part, amount)
             this.$emit('addToCart', part)
             
         }

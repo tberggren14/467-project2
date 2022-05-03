@@ -22,11 +22,10 @@
         </div>
         <a href="/checkout"> <button class="cartButton"> Cart {{cart.length}} </button></a>
         <h3><br> Order parts</h3>
-
         <searchbar>
         </searchbar>
         <% for (part in all) { %>
-            <productlist v-bind:part="<%= JSON.stringify(all[part]) %>" @add-To-Cart="updateCart">
+            <productlist :part="<%= JSON.stringify(all[part]) %>" @add-To-Cart="updateCart">
             </productlist>
             <% }; %>
     </div>

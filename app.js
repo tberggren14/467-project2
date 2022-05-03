@@ -2,6 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const axios = require('axios');
 
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  database: 'test'
+});
+
+connection.connect();
+
 
 const app = express()
 var port = process.env.PORT || 3000;
@@ -27,6 +35,11 @@ app.get('/getParts', (req, res) => {
     productArray = Object.values(JSON.parse(JSON.stringify(products)))
     res.render('parts.ejs', { all: productArray });
   });
+})
+
+app.get('/credit', (req, res) => {
+  //console.log(cart)
+  res.render('credit.ejs')
 })
 
 const credit = require('./controllers/credit');
@@ -73,6 +86,22 @@ app.post('/getParts', (req, res) => {
   cart = req.body.cart;
   res.render('checkout.ejs',{cart})
 })
+
+
+app.post('/createOrder', (req, res) => {
+  orderDetails = req.body.order.date;
+  console.log(orderDetails);
+  connection.query(`INSERT INTO customerorder (name, email, address, shipandhandle, price, weight, timeoforder, status)
+       VALUES ('orderid', '${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
+      ,'${req.body.order.date}','open' );`, function (err, res) {
+    if (err) throw err;
+   console.log(res);
+    
+  });
+})
+
+
+
 
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
