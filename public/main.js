@@ -35,4 +35,5 @@ const app = Vue.createApp({
 app.component('searchbar');
 app.component('checkout');
 app.component('productlist');
+app.component('brackets');
 

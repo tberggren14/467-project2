@@ -1,18 +1,19 @@
 app.component('brackets', {
     template:
-        <div class="display">
-
-        </div>,
+        `<div class="brackets">
+            Here you will add the user interface that displays what you need to
+         
+         </div>`,
 
     data() {
-        return {
+        return { // should be all of the data you want to return
             brackets: null,
             weight: '',
             cost: ''
         }
     },
 
-    methods: {
+    methods: { // idk if these method functions are right
         async getBrackets() {
             var resp = await axios.get('http://localhost:3000/getBrackets')
             this.brackets = resp.data
@@ -27,12 +28,4 @@ app.component('brackets', {
 
     },
 
-    computed: {
-    list() {
-        if (this.parts == null) {
-            this.getBrackets()
-        }
-        return this.brackets
-    }
-}
 })
