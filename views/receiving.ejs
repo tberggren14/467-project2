@@ -1,1 +1,38 @@
+<html>
 
+<template>
+    <div class = "container">
+        <Header />
+    </div>
+</template>
+
+<head>
+    <title>Inventory</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+    <li><a href="/Order History">View Orders</a></li>
+</head>
+<script>
+    import Header from './views/admin'
+    export default {
+        name: 'App'
+        components:{
+        Header,
+    }
+</script>
+<style scoped
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+></style>
+<body>
+    <h3>Admin functions</h3>
+    <label for="Price">=Input Price here:</label>
+    <input type="text" id="Price" name="Price" required
+       minlength="4" maxlength="10" size="16">
+     
+    <button onclick="PWUPDATE()">Apply Changes</button> 
+</body>
+</html>
