@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const axios = require('axios');
+const sphp = require('sphp');
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -14,6 +15,11 @@ connection.connect();
 const app = express()
 var port = process.env.PORT || 3000;
 
+var app = express();
+var server = app.listen(8080);
+
+app.use(sphp.express('public/'));
+app.use(express.static('public/'));
 
 const path = require('path')
 app.use(express.static(path.join(__dirname, 'public')));
@@ -99,8 +105,6 @@ app.post('/createOrder', (req, res) => {
     
   });
 })
-
-
 
 
 app.listen(port, () => {

@@ -8,21 +8,118 @@
 </head>
 
 <body>
-    <h3>Admin functions</h3> 
-    <div id="app">
+  <h3>Admin functions</h3> 
+  <div id="app">
 
-        <brackets>
-        </brackets>
+      <brackets>
+      </brackets>
 
-    </div>
+  </div>
 
-    <script src="/main.js"></script>
-    
-    <script src="/components/Brackets.js"></script>
-    
-    <script>
-        const mountedApp = app.mount('#app')
-    </script>
+  <script src="/main.js"></script>
+  
+  <script src="/components/Brackets.js"></script>
+  
+  <script>
+      const mountedApp = app.mount('#app')
+  </script>
 </body>
 
+<php>
+include_once("db.php"); // including db.php page at. 
+
+if(isset($_POST['save'])) // check if post button is clicked or not
+{
+  $bracket_id = $_POST['bracket_id'];
+  $minweight = $_POST['minweight']; // get data from form
+  $maxweight = $_POST['maxweight']; // get data from form
+  $cost = $_POST['cost']; // get data from form
+
+  if($bracket_id) // if bracket_id is not null then run update query
+  {
+      /// quering the database to store blog table. 
+      mysqli_query($conn, "UPDATE `brackets` SET `minweight`='$minweight',`maxweight`='$maxweight',`cost`='$cost' WHERE id = '$bracket_id'");
+      echo "Record Updated Successfully";
+  }
+  else // if bracket_id is NULL then run insert query
+  {
+      /// quering the database to store blog table. 
+      mysqli_query($conn, "INSERT INTO `brackets`(`minweight`, `maxweight`, `cost`) VALUES ('$minweight', '$maxweight', '$cost')");
+      echo  "Insert Operation Successfull";
+  }
+}
+
+if(isset($_GET['delete'])) // check if delete button is clicked
+{
+    $bracket_id = $_GET['delete']; // get bracket_id from form
+    mysqli_query($conn, "DELETE FROM `brackets` WHERE id = '$bracket_id'");
+}
+
+if(isset($_GET['edit'])) // check if Edit button is clicked
+{
+    $bracket_id = $_GET['edit']; // get bracket_id from form
+    $result = mysqli_query($conn, "SELECT * FROM `brackets` WHERE id = '$bracket_id'"); // get data from brackets table associated to the specific id
+    $row = mysqli_fetch_assoc($result); /// fetch row from the return result of previous query
+}
+  
+<div style="width: 60%; margin: 0 auto; text-align: center; border 1px solid; background-color: lightgrey;">
+
+  <h3>Add Records</h3>
+  <form action="" method="POST">
+    <input type="hidden" name="bracket_id" value="<?php echo isset($row['id']) ? $row['id'] : "" ?>">
+    Min Weight: <br>
+    <input type="number" name="minweight" step="0.01" placeholder="Min Weight" value="<?php echo isset($row['minweight']) ? $row['minweight'] : ""  ?>"> <br>
+    Max Weight: <br>
+    <input type="number" name="maxweight" step="0.01" placeholder="Max Weight" value="<?php echo isset($row['maxweight']) ? $row['maxweight'] : ""  ?>"> <br>
+    Cost: <br>
+    <input type="number" name="cost" step="0.01" placeholder="Cost" value="<?php echo isset($row['cost']) ? $row['cost'] : ""  ?>"> <br>
+    <br><br>
+    <input type="submit" name="save" value="<?php echo isset($row['id']) ? "Update" : "Insert"  ?>">
+
+    
+    if(isset($row['id']))
+    {
+       echo "<a href='bracket.php'>Insert New Record</a>";
+    }
+    
+    <br><br>
+  </form>
+  
+</div>
+
+<div style="width: 80%; margin: 0 auto">
+  <h3>List of all records saved in database</h3>
+  <table width="100%;" border="1px">
+      <tr>
+        <th>S.No</th>
+        <th>Min Weight</th>
+        <th>Max Weight</th>
+        <th>Cost</th>
+        <th></th>
+      </tr>
+      <?php
+      $brackets = mysqli_query($conn, "SELECT * FROM `brackets`");
+      $sno=0;
+      while($row = mysqli_fetch_assoc($brackets))
+      {
+        $sno++;
+        ?>
+         <tr>
+            <td><?php echo $sno ?></td>
+            <td><?php echo $row['minweight'] ?></td>
+            <td><?php echo $row['maxweight'] ?></td>
+            <td><?php echo $row['cost'] ?></td>
+            <td> 
+                  <a href="?edit=<?php echo $row['id'] ?>">Edit</a> 
+                  <a href="?delete=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure you want to delete?')">Delete</a> 
+            </td>
+        </tr>
+        
+      }
+      
+   
+      </table>
+</div>
+
+</php>
 </html>
