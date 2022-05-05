@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+    <div class="nav-bar">
+        <li class="banner">Automotive parts store </li>
+        <a href="/admin">
+            <li class="item"> Weight Brackets </li>
+        </a>
+        <a href="/adminOrder">
+            <li class="item"> Orders </li>
+        </a>
+    </div>
+        <h6><br>Filter the orders:</h6>
+        <searchorders></searchorders>
+
+        <h3><br>List of all orders:</h3>
+        <% for (order in all) { %>
+            <il>
+                <%= all[order].orderid %>, <%= all[order].name %>, <%= all[order].email %>, <%= all[order].address %>,
+                                <%= all[order].shipandhandle %>, <%= all[order].price %>, <%= all[order].weight %>, <%=
+                                                all[order].timeoforder %>,<br><br>
+            </il>
+            <% }; %>
+
+    </div>
+
+    <script src="/main.js"></script>
+
+    <script src="/components/searchorders.js"></script>
+
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
+</body>
+
+</html>

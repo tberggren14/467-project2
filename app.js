@@ -56,9 +56,13 @@ app.get('/warehouse', (req, res) => {
 })
 
 // Route for admin page
+const ship = require('./controllers/admin');
 app.get('/admin', (req, res) => {
-  res.render('admin.ejs');
+  ship.getAll((list) => {
+    res.render('admin.ejs', { brackets: list });
+  });
 })
+
 
 // Route for order page
 const order = require('./controllers/order');
@@ -100,6 +104,12 @@ app.post('/createOrder', (req, res) => {
   });
 })
 
+app.get('/adminOrder', (req, res) => {
+  order.getAll((list) => {
+    res.render('adminOrders.ejs', { all: list });
+  });
+  
+})
 
 
 

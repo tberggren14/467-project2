@@ -36,4 +36,6 @@ app.component('searchbar');
 app.component('checkout');
 app.component('productlist');
 app.component('brackets');
+app.component('newbracket');
+app.component('searchorders');
 

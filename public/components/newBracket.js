@@ -1,22 +1,16 @@
-app.component('brackets', {
+app.component('newbracket', {
     template:
-        `<div class="brackets">
-        <div v-for="bracket in brackets">
-            Min:
-                    {{bracket.minweight}} lbs,
-                     to Max:
-                    {{bracket.maxweight}} lbs,
-                    \${{bracket.cost}}
-                    <button @click ="removeItem(part)">Remove</button>
-                    </div>
-                    </div>`,
-    props: {
-        brackets: {
-            type: Object,
-            required: true
-        }
-    },
-
+        `
+         <div class="newWeight">
+         <form @submit.prevent ="submit" >
+                    <label for="weight">Weight: </label>
+                    <input id="want"  v-model="weight"><br>
+                    <label for="cost">Cost: </label>
+                    <input id="cost"  v-model="cost"><br>
+                    <input type="submit" value="Add new bracket">                  
+                </form>    
+         </div>`,
+    
     data() {
         return { // should be all of the data you want to return
             weight: '',
