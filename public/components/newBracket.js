@@ -13,7 +13,8 @@ app.component('newbracket', {
     
     data() {
         return { // should be all of the data you want to return
-            weight: '',
+            minweight: '',
+            maxweight: '',
             cost: ''
         }
     },
@@ -29,6 +30,11 @@ app.component('newbracket', {
                 alert('Please put in the wieght and cost for the item.')
                 return
             }
+            this.newBrackets = {
+
+            }
+            async deleteBrackets() {
+                if 
         },
 
     },
