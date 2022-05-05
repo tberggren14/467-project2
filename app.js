@@ -1,7 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
 const axios = require('axios');
-const sphp = require('sphp');
 
 var connection = mysql.createConnection({
   host: 'localhost',
