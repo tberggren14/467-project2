@@ -2,9 +2,9 @@ drop table brackets;
 
 CREATE TABLE brackets (
   id int(11) NOT NULL PRIMARY KEY,
-  'minweight' DECIMAL(9.2) DEFAULT 0.00,
-  'maxweight' DECIMAL(9.2) DEFAULT 0.00,
-  'cost' DECIMAL(9.2) DEFAULT 0.00
+  minweight DECIMAL(9.2) DEFAULT 0.00,
+  maxweight DECIMAL(9.2) DEFAULT 0.00,
+  cost DECIMAL(9.2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO brackets
