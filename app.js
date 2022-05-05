@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const axios = require('axios');
+const sphp = require('sphp');
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -14,6 +15,7 @@ connection.connect();
 const app = express()
 var port = process.env.PORT || 3000;
 
+app.use(express.static('public/'));
 
 const path = require('path')
 app.use(express.static(path.join(__dirname, 'public')));
@@ -110,8 +112,6 @@ app.get('/adminOrder', (req, res) => {
   });
   
 })
-
-
 
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
