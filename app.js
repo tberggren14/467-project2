@@ -77,9 +77,7 @@ app.get('/orders', (req, res) => {
 
 // Route to udpate status of order
 var orderid;
-app.post(`/order`, (req, res) => {
-  orderid = req.body.orderid;
-  console.log(orderid);
+app.post(`/updatestatus`, (req, res) => {
   let newStatus = 'closed';
   orderid = req.body.orderid;
   let sql = `UPDATE customerorder
