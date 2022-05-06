@@ -148,7 +148,7 @@ app.post('/newBrackets/', (req, res) => {
   app.post('/deleteBrackets/', (req, res) => {
     orderDetails = req.body.order.date;
     console.log(orderDetails);
-    connection.query(`delete from Brackets where ID='id'`))
+    connection.query(`delete from Brackets where ID === ))
        VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {
       if (err) throw err;
       console.log(res);
@@ -163,8 +163,19 @@ app.post('/newBrackets/', (req, res) => {
     });
   })
 
+  app.post('/searchOrder', (req, res) => {
+    connection.query(`Select * from customerorder where date <=   (name, email, address, shipandhandle, price, weight, timeoforder, status)
+         VALUES ('orderid', '${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
+        ,'${req.body.order.date}','open' );`, function (err, result) {
+        if (err) throw err;
+      console.log(result);
+      res.send('Order Created Thank you!');
+    });
+   
+  })
+  
+
   
   app.listen(port, () => {
     console.log(`Express server listening at http://localhost:${port}`)
   })
-
