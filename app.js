@@ -77,9 +77,7 @@ app.get('/orders', (req, res) => {
 
 // Route to udpate status of order
 var orderid;
-app.post(`/order`, (req, res) => {
-  orderid = req.body.orderid;
-  console.log(orderid);
+app.post(`/updatestatus`, (req, res) => {
   let newStatus = 'closed';
   orderid = req.body.orderid;
   let sql = `UPDATE customerorder
@@ -123,7 +121,11 @@ app.post('/newCart', (req, res) => {
 
 app.post('/createOrder', (req, res) => {
   connection.query(`INSERT INTO customerorder (name, email, address, shipandhandle, price, weight, timeoforder, status)
-       VALUES ('orderid', '${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
+<<<<<<< HEAD
+       VALUES (NULL,'${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
+=======
+       VALUES ('${req.body.order.name}','${req.body.order.email}','${req.body.order.address}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
+>>>>>>> f455b6f77b525f59e7dbb3b17a908807ddbe310b
       ,'${req.body.order.date}','open' );`, function (err, result) {
       if (err) throw err;
     console.log(result);
