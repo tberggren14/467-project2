@@ -74,6 +74,22 @@ app.get('/orders', (req, res) => {
   });
 })
 
+
+app.get(`/updatestatus/:id`, (req, res) => {
+  let newStatus = 'closed';
+  let sql = `UPDATE customerorder
+  SET
+      status = '${newStatus}'
+      
+  WHERE orderid = ${req.params.id}`;
+  connection.query(sql, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.send('Status Updated...');
+  })
+});
+
+
 // Route for index page
 app.get('/index', (req, res) => {
   res.render('index.ejs')
@@ -97,6 +113,7 @@ app.post('/newCart', (req, res) => {
 })
 
 
+
 app.post('/createOrder', (req, res) => {
   connection.query(`INSERT INTO customerorder (name, email, address, shipandhandle, price, weight, timeoforder, status)
        VALUES ('orderid', '${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
@@ -108,14 +125,39 @@ app.post('/createOrder', (req, res) => {
  
 })
 
-app.get('/adminOrder', (req, res) => {
-  order.getAll((list) => {
-    res.render('adminOrders.ejs', { all: list });
+app.post('/newBrackets/', (req, res) => {
+  orderDetails = req.body.order.date;
+  console.log(orderDetails);
+  connection.query(`delete from Brackets where (ID, minweight, maxweight, cost))
+  VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {
+    if (err) throw err;
+    console.log(res);
+    if (err) throw err;
+    console.log(res);
+    
   });
-  
 })
 
-app.listen(port, () => {
-  console.log(`Express server listening at http://localhost:${port}`)
-})
+  app.post('/deleteBrackets/', (req, res) => {
+    orderDetails = req.body.order.date;
+    console.log(orderDetails);
+    connection.query(`delete from Brackets where (ID, minweight, maxweight, cost))
+       VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {
+      if (err) throw err;
+      console.log(res);
+    })
+    ship.getAll((list) => {
+      res.render('admin.ejs', { brackets: list });
+    });
+  })
+  app.get('/adminOrder', (req, res) => {
+    order.getAll((list) => {
+      res.render('adminOrders.ejs', { all: list });
+    });
+  })
+
+  
+  app.listen(port, () => {
+    console.log(`Express server listening at http://localhost:${port}`)
+  })
 

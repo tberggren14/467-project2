@@ -5,6 +5,12 @@
     <link rel="stylesheet" type="text/css" href="/order.css" />
   </head>
 
+  <script>
+    function fulfill(orderid) {
+      console.log(orderid);
+    }
+  </script>
+
   <body>
     <header>
       <h1>Order fulfillment</h1>
@@ -25,6 +31,9 @@
     <il>
       <% for (order in all) { %>
       <li>
+        <button onclick="fulfill(<%= all[order].orderid %>)">
+          Fulfill Order
+        </button>
         <%= all[order].orderid %>, <%= all[order].name %>, <%= all[order].email
         %>, <%= all[order].address %>, <%= all[order].shipandhandle %>, <%=
         all[order].price %>, <%= all[order].weight %>, <%=

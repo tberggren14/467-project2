@@ -13,7 +13,8 @@ app.component('newbracket', {
     
     data() {
         return { // should be all of the data you want to return
-            weight: '',
+            minweight: '',
+            maxweight: '',
             cost: ''
         }
     },
@@ -25,17 +26,13 @@ app.component('newbracket', {
         },
 
         async newBrackets() {
-            if (this.weight === '' || this.cost === '') {
+            if (this.minweight === '' || this.maxweight === '') {
                 alert('Please put in the wieght and cost for the item.')
                 return
-            }
-            this.newBracket = {
-                weight: this.weight,
-                cost: this.cost
-            }
-            axios.post('http://localhost:3000/newbracket', {
-                newBracket: this.newBracket,
-            });
+}
+},
+            
+            async deleteBrackets() {
         },
 
     },
