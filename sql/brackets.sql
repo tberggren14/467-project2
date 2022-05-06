@@ -58,37 +58,37 @@ cost)
 VALUES
 (1,
 0,
-50,
-30);
+5,
+4);
 INSERT INTO brackets
 (id,
 minweight,
 maxweight,
 cost)
 VALUES
-(1,
+(2,
+5.01,
+20,
+7);
+INSERT INTO brackets
+(id,
+minweight,
+maxweight,
+cost)
+VALUES
+(3,
+20.01,
+50,
+35);
+INSERT INTO brackets
+(id,
+minweight,
+maxweight,
+cost)
+VALUES
+(4,
 50.01,
 100,
-60);
-INSERT INTO brackets
-(id,
-minweight,
-maxweight,
-cost)
-VALUES
-(1,
-100.01,
-150,
-90);
-INSERT INTO brackets
-(id,
-minweight,
-maxweight,
-cost)
-VALUES
-(1,
-150.01,
-200,
 120);
 INSERT INTO brackets
 (id,
@@ -96,7 +96,7 @@ minweight,
 maxweight,
 cost)
 VALUES
-(1,
-200.01,
+(5,
+100.01,
 999.99,
 300);
