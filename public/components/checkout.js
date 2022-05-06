@@ -11,7 +11,7 @@ app.component('checkout', {
                     <button @click ="removeItem(part)">Delete</button>
                 </div>
                 <div v-if= "cart.length != 0">
-               <form @submit.prevent ="submit" >
+               <form @submit.prevent="submit" >
                Order Details: <br>
                     <label>Subtotal: </label>\${{ amount }}<br>
                     <label>Total Weight: </label>{{ weight }}lbs<br>
@@ -79,7 +79,7 @@ app.component('checkout', {
             }
             const data = {
                 vendor: "Company",
-                trans: (Math.random() * 10 + Math.random() * 10 + Math.random() * 10 + '-987654321-' + Math.random() * 10 + Math.random() * 10 + Math.random() * 10) ,
+                trans: (Math.random() * 10 + Math.random() * 10 + Math.random() * 10 + '-987654321-' + Math.random() * 10 + Math.random() * 10 + Math.random() * 10),
                 name: this.name,
                 cc: this.cc,
                 exp: this.exp,
@@ -91,6 +91,7 @@ app.component('checkout', {
                     alert('Credit card transaction denied: ' + res.data.errors + ' Please try again.')
                 }
                 if (res.data.authorization != null) {
+                    alert('Order has been placed email has been sent to ' + this.email + ' Thank you!')
                     this.order = {
                         name: this.name,
                         email: this.email,
@@ -106,10 +107,8 @@ app.component('checkout', {
                     axios.post('http://localhost:3000/createOrder', {
                         order: this.order,
                     });
-                    
                 }
-
-
+                return
             });
         }
     },
@@ -117,22 +116,48 @@ app.component('checkout', {
         amount() {
             var x = 0;
             for (part of this.cart) {
-                x += part.price
+                x += part.price * 100  // JS has werid math
             }
-            return x
+            return x / 100
         },
         weight() {
             var x = 0;
             for (part of this.cart) {
-                x += part.weight
+                x += part.weight * 100
             }
-            return x
+            return x / 100
         },
 
         shipping() {
             var x = 10;
-            return x
-
+            if (this.weight < 2) {
+                x = 1
+                return x
+            }
+            else if (this.weight < 5) {
+                x = 2
+                return x
+            }
+            else if (this.weight < 10) {
+                x = 6
+                return x
+            }
+            else if (this.weight < 20) {
+                x = 10
+                return x
+            }
+            else if (this.weight < 50) {
+                x = 20
+                return x
+            }
+            else if (this.weight < 100) {
+                x = 25
+                return x
+            }
+            else {
+                x = 50
+                return x
+            }
         }
     }
 })

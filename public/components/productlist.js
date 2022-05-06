@@ -6,8 +6,8 @@ app.component('productlist', {
                    {{part.description}}<br>
                    \${{ part.price }} <br>
                    {{ part.weight }}lbs <br>
-                  Available: {{ part.quantity }}                                          
-                <button @click=addToCart(part) >Add to cart</button> 
+                  Available: {{ available }}                            
+                <button @click=addToCart(part) :disabled="available==0" >Add to cart</button> 
                                
          </div>`,
     props: {
@@ -19,15 +19,20 @@ app.component('productlist', {
 
     data() {
         return {
-            quantity: this.quantity,
+            quantity: this.part.quantity,
 
         }
     },
     methods: {
         async addToCart(part) {
             this.$emit('addToCart', part)
-            
         }
     },
+    computed: {
+        available() {
+            var x = Math.floor(Math.random() * 10);
+            return x
+        },
+    }
 
 })
