@@ -33,9 +33,6 @@ app.component('newbracket', {
             this.newBrackets = {
 
             }
-            async deleteBrackets() {
-                if 
-        },
 
     },
 

@@ -111,8 +111,8 @@ app.post('/newBrackets/', (req, res) => {
   console.log(orderDetails);
   connection.query(`delete from Brackets where (ID, minweight, maxweight, cost))
   VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {
- if (err) throw err;
-console.log(res);
+  if (err) throw err;
+  console.log(res);
     if (err) throw err;
    console.log(res);
     
@@ -121,7 +121,7 @@ console.log(res);
   app.post('/deleteBrackets/', (req, res) => {
     orderDetails = req.body.order.date;
     console.log(orderDetails);
-    connection.query(`delete from Brackets where (ID, minweight, maxweight, cost))
+    connection.query(`delete from Brackets where ID === ))
        VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {
       if (err) throw err;
      console.log(res);
