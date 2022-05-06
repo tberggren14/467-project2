@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="nav-bar">
+            <li class="banner">Automotive parts store </li>
+            <a href="/admin">
+                <li class="item"> Weight Brackets </li>
+            </a>
+            <a href="/adminOrder">
+                <li class="item"> Orders </li>
+            </a>
+            </div>
+            <h3><br>Admin functions</h3>
+            <h3><br>Weight brackets to calculate shipping costs:</h3>
+
+        
+            <brackets :brackets="<%= JSON.stringify(brackets) %>" >
+            </brackets>
+            <h3><br>Make a new weight bracket</h3>
+            <newbracket></newbracket>
+
+  </div>
+
+    <script src="/main.js"></script>
+    
+    <script src="/components/Brackets.js"></script>
+    <script src="/components/newBracket.js"></script>
+    
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
+</body>
+
+</html>
