@@ -75,6 +75,22 @@ app.get('/orders', (req, res) => {
   });
 })
 
+
+app.get(`/updatestatus/:id`, (req, res) => {
+  let newStatus = 'closed';
+  let sql = `UPDATE customerorder
+  SET
+      status = '${newStatus}'
+      
+  WHERE orderid = ${req.params.id}`;
+  connection.query(sql, (err, result) => {
+    if(err) throw err;
+    console.log(result);
+    res.send('Status Updated...');
+  })
+});
+
+
 // Route for index page
 app.get('/index', (req, res) => {
   res.render('index.ejs')
