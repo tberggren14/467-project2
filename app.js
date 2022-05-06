@@ -148,7 +148,7 @@ app.post('/newBrackets/', (req, res) => {
   app.post('/deleteBrackets/', (req, res) => {
     orderDetails = req.body.order.date;
     console.log(orderDetails);
-    connection.query(`delete from Brackets where ID === ))
+    connection.query(`delete from Brackets where ID='id'`))
        VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {
       if (err) throw err;
       console.log(res);
