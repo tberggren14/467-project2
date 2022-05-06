@@ -75,16 +75,18 @@ app.get('/orders', (req, res) => {
   });
 })
 
+// Route to udpate status of order
 var orderid;
 app.post(`/order`, (req, res) => {
   orderid = req.body.orderid;
   console.log(orderid);
   let newStatus = 'closed';
+  orderid = req.body.orderid;
   let sql = `UPDATE customerorder
   SET
       status = '${newStatus}'
       
-  WHERE orderid = ${req.body.orderid}`;
+  WHERE orderid = ${orderid}`;
   connection.query(sql, (err, result) => {
     if(err) throw err;
     console.log(result);
