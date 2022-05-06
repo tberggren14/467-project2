@@ -1,42 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
+<template>
+    <div class = "container">
+        <Header />
+    </div>
+</template>
 
 <head>
-    <title>Admin</title>
+    <title>inventory</title>
     <link rel="stylesheet" type="text/css" href="/style.css" />
-    <script src="https://unpkg.com/vue@next"></script>
+    <li><a href="/Order History">View Orders</a></li>
+    
 </head>
 
 <body>
-    <div id="app">
-        <div class="nav-bar">
-            <li class="banner">Automotive parts store </li>
-            <a href="/admin">
-                <li class="item"> Weight Brackets </li>
-            </a>
-            <a href="/adminOrder">
-                <li class="item"> Orders </li>
-            </a>
-            </div>
-            <h3><br>Admin functions</h3>
-            <h3><br>Weight brackets to calculate shipping costs:</h3>
-
-        
-            <brackets :brackets="<%= JSON.stringify(brackets) %>" >
-            </brackets>
-            <h3><br>Make a new weight bracket</h3>
-            <newbracket></newbracket>
-
-  </div>
-
-    <script src="/main.js"></script>
-    
-    <script src="/components/Brackets.js"></script>
-    <script src="/components/newBracket.js"></script>
-    
-    <script>
-        const mountedApp = app.mount('#app')
-    </script>
+    <h3>Admin functions</h3>
+    <label for="itemname"> Input Item Name here:</label>
+    <input type="text" id="itemid" name="Price" required
+       minlength="4" maxlength="10" size="16">
+       <button onclick="PWUPDATE()">Submit</button>
+    <label for="itemid"><br> Input Item Discription here:</label>
+    <input type="text" id="itemid" name="Price" required
+       minlength="4" maxlength="10" size="16">
+     
+    <button onclick=method"POST" href="receiving.js">Submit</button> 
 </body>
-
 </html>
+
+}   

@@ -106,6 +106,11 @@ app.get('/checkout', (req, res) => {
 })
 
 
+// Route for index page
+app.get('/receiving', (req, res) => {
+  res.render('receiving.ejs')
+})
+
 app.post('/getParts', (req, res) => {
   //res.redirect('/checkout')
   cart = req.body.cart;
