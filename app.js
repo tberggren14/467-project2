@@ -77,9 +77,7 @@ app.get('/orders', (req, res) => {
 
 // Route to udpate status of order
 var orderid;
-app.post(`/order`, (req, res) => {
-  orderid = req.body.orderid;
-  console.log(orderid);
+app.post(`/updatestatus`, (req, res) => {
   let newStatus = 'closed';
   orderid = req.body.orderid;
   let sql = `UPDATE customerorder
@@ -128,7 +126,7 @@ app.post('/newCart', (req, res) => {
 
 app.post('/createOrder', (req, res) => {
   connection.query(`INSERT INTO customerorder (name, email, address, shipandhandle, price, weight, timeoforder, status)
-       VALUES ('orderid', '${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
+       VALUES ('${req.body.order.name}','${req.body.order.email}','${req.body.order.address}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
       ,'${req.body.order.date}','open' );`, function (err, result) {
       if (err) throw err;
     console.log(result);
@@ -168,8 +166,19 @@ app.post('/newBrackets/', (req, res) => {
     });
   })
 
+  app.post('/searchOrder', (req, res) => {
+    connection.query(`Select * from customerorder where date <=   (name, email, address, shipandhandle, price, weight, timeoforder, status)
+         VALUES ('orderid', '${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
+        ,'${req.body.order.date}','open' );`, function (err, result) {
+        if (err) throw err;
+      console.log(result);
+      res.send('Order Created Thank you!');
+    });
+   
+  })
+  
+
   
   app.listen(port, () => {
     console.log(`Express server listening at http://localhost:${port}`)
   })
-

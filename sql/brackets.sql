@@ -9,20 +9,20 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mydb`
+-- Database: mydb
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brackets`
+-- Table structure for table brackets
 --
 
-CREATE TABLE `brackets` (
-  `id` int(11) NOT NULL,
-  `minweight` decimal(9,2) DEFAULT 0.00,
-  `maxweight` decimal(9,2) DEFAULT 0.00,
-  `cost` decimal(9,2) DEFAULT 0.00
+CREATE TABLE brackets (
+  id int(11) NOT NULL,
+  minweight decimal(9,2) DEFAULT 0.00,
+  maxweight decimal(9,2) DEFAULT 0.00,
+  cost decimal(9,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -30,20 +30,20 @@ CREATE TABLE `brackets` (
 --
 
 --
--- Indexes for table `brackets`
+-- Indexes for table brackets
 --
-ALTER TABLE `brackets`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE brackets
+  ADD PRIMARY KEY (id);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `brackets`
+-- AUTO_INCREMENT for table brackets
 --
-ALTER TABLE `brackets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE brackets
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
