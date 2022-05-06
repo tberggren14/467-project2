@@ -29,12 +29,11 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
-var cart = [];
+let cart = [];
 const part = require('./controllers/parts');
 app.get('/getParts', (req, res) => {
-  part.getAll((products) => {
-    productArray = Object.values(JSON.parse(JSON.stringify(products)))
-    res.render('parts.ejs', { all: productArray });
+  part.getAll((list) => {
+    res.render('parts.ejs', { all: list });
   });
 })
 
@@ -92,17 +91,21 @@ app.post('/getParts', (req, res) => {
   res.render('checkout.ejs',{cart})
 })
 
+app.post('/newCart', (req, res) => {
+  cart = req.body.cart;
+  res.render('checkout.ejs', { cart })
+})
+
 
 app.post('/createOrder', (req, res) => {
-  orderDetails = req.body.order.date;
-  console.log(orderDetails);
   connection.query(`INSERT INTO customerorder (name, email, address, shipandhandle, price, weight, timeoforder, status)
        VALUES ('orderid', '${req.body.order.name}','${req.body.order.email}',' ${req.body.order.shipping }','${req.body.order.amount}','${req.body.order.weight}'
-      ,'${req.body.order.date}','open' );`, function (err, res) {
-    if (err) throw err;
-   console.log(res);
-    
+      ,'${req.body.order.date}','open' );`, function (err, result) {
+      if (err) throw err;
+    console.log(result);
+    res.send('Order Created Thank you!');
   });
+ 
 })
 
 app.get('/adminOrder', (req, res) => {
@@ -115,3 +118,4 @@ app.get('/adminOrder', (req, res) => {
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
 })
+

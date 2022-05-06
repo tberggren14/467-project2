@@ -29,6 +29,13 @@ app.component('newbracket', {
                 alert('Please put in the wieght and cost for the item.')
                 return
             }
+            this.newBracket = {
+                weight: this.weight,
+                cost: this.cost
+            }
+            axios.post('http://localhost:3000/newbracket', {
+                newBracket: this.newBracket,
+            });
         },
 
     },
