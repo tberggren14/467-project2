@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>parts List</title>
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div id="app">
-        <div class="nav-bar">
-            <li class="banner">Automotive parts store </li>
-            <a href="/getParts">
-                <li class="item"> Products available </li>
-            </a>
-            <a href="/checkout">
-                <li class="item"> Cart </li>
-            </a>
-        </div>
-        <a href="/checkout"> <button class="cartButton"> Cart {{cart.length}} </button></a>
-        <h3><br> Order parts</h3>
-        <searchbar>
-        </searchbar>
-        <% for (part in all) { %>
-            <productlist :part="<%= JSON.stringify(all[part]) %>" @add-To-Cart="updateCart">
-            </productlist>
-            <% }; %>
+      <div class="nav-bar">
+        <li class="banner">Automotive parts store</li>
+        <a href="/getParts">
+          <li class="item">Products available</li>
+        </a>
+        <a href="/checkout">
+          <li class="item">Cart</li>
+        </a>
+        <a href="/index">
+          <li class="item">Home</li>
+        </a>
+      </div>
+      <a href="/checkout">
+        <button class="cartButton">Cart {{ cart.length }}</button></a
+      >
+      <h3>
+        <br />
+        Order parts
+      </h3>
+      <searchbar> </searchbar>
+      <% for (part in all) { %>
+      <productlist
+        :part="<%= JSON.stringify(all[part]) %>"
+        @add-To-Cart="updateCart"
+      >
+      </productlist>
+      <% }; %>
     </div>
-
 
     <script src="/main.js"></script>
 
@@ -37,8 +44,7 @@
     <script src="/components/checkout.js"></script>
     <script src="/components/productlist.js"></script>
     <script>
-        const mountedApp = app.mount('#app')
+      const mountedApp = app.mount("#app");
     </script>
-</body>
-
+  </body>
 </html>

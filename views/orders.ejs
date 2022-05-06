@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Order fullfillment</title>
-    <link rel="stylesheet" type="text/css" href="/order.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
@@ -17,21 +17,15 @@
   </script>
 
   <body>
-    <header>
-      <h1>Order fulfillment</h1>
+    <div class="nav-bar">
+      <li class="banner">Automotive parts store</li>
+      </a>
+      <a href="/index">
+        <li class="item">Home</li>
+      </a>
+    </div>
 
-      <!--navbar at top of page-->
-      <div class="navbar">
-        <a class="logo" href="#">Parts<span>Store</span></a>
-
-        <nav>
-          <!--Navbar button(s)-->
-          <ul class="primary-nav">
-            <li class="current"><a href="/index">Home</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <h3>Order List</h3>
 
     <il>
       <% for (order in all) { %>
