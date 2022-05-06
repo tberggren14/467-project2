@@ -74,8 +74,8 @@ app.get('/orders', (req, res) => {
   });
 })
 
-
-app.get(`/updatestatus/:id`, (req, res) => {
+var orderid;
+app.post(`/updatestatus`, (req, res) => {
   let newStatus = 'closed';
   let sql = `UPDATE customerorder
   SET
