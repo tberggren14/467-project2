@@ -93,6 +93,7 @@ app.post('/getParts', (req, res) => {
 })
 
 
+
 app.post('/createOrder', (req, res) => {
   orderDetails = req.body.order.date;
   console.log(orderDetails);
@@ -108,7 +109,7 @@ app.post('/createOrder', (req, res) => {
 app.post('/newBrackets/', (req, res) => {
   orderDetails = req.body.order.date;
   console.log(orderDetails);
-  a
+  
     if (err) throw err;
    console.log(res);
     
@@ -118,21 +119,21 @@ app.post('/newBrackets/', (req, res) => {
     orderDetails = req.body.order.date;
     console.log(orderDetails);
     connection.query(`delete from Brackets where (ID, minweight, maxweight, cost))
-       VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {a
+       VALUES ('id', '${req.body.Brackets.minweight}', '${req.body.Brackets.maxweight}'${req.body.Brackets.price}');`, function (err, res) {
       if (err) throw err;
      console.log(res);
       })
   ship.getAll((list) => {
     res.render('admin.ejs', { brackets: list });
   });
-
+  })
 app.get('/adminOrder', (req, res) => {
   order.getAll((list) => {
     res.render('adminOrders.ejs', { all: list });
   });
-  
 })
 
+  
 app.listen(port, () => {
   console.log(`Express server listening at http://localhost:${port}`)
 })
