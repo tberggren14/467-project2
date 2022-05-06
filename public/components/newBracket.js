@@ -29,7 +29,10 @@ app.component('newbracket', {
             if (this.minweight === '' || this.maxweight === '') {
                 alert('Please put in the wieght and cost for the item.')
                 return
-}
+            }
+            else {
+                console.log('message')
+            }
 },
             
             async deleteBrackets() {

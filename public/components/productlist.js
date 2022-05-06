@@ -6,7 +6,9 @@ app.component('productlist', {
                    {{part.description}}<br>
                    \${{ part.price }} <br>
                    {{ part.weight }}lbs <br>
-                  Available: {{ available }}                            
+                  Available: {{ available }}   
+                  <label for="quantity">Quantity:</label>
+                  <input id="quantity" size=3 v-model="quantity"> &nbsp;                         
                 <button @click=addToCart(part) :disabled="available==0" >Add to cart</button> 
                                
          </div>`,
@@ -25,7 +27,15 @@ app.component('productlist', {
     },
     methods: {
         async addToCart(part) {
-            this.$emit('addToCart', part)
+            var x = parseInt(this.quantity)
+            if (isNaN(x)) {
+                alert('Quantity was not a number')
+                return
+            }
+            console.log(x)
+            let orderParts = { ...part }
+            orderParts.quantity = x
+            this.$emit('add-to-cart', orderParts)
         }
     },
     computed: {
@@ -33,6 +43,12 @@ app.component('productlist', {
             var x = Math.floor(Math.random() * 10);
             return x
         },
+        howmanyparts() {
+            if (this.part.quantity === 0) {
+                return 0
+            }
+            return this.quantity
+        }
     }
 
 })

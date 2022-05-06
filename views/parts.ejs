@@ -22,12 +22,8 @@
         </div>
         <a href="/checkout"> <button class="cartButton"> Cart {{cart.length}} </button></a>
         <h3><br> Order parts</h3>
-        <searchbar>
+        <searchbar :parts="<%= JSON.stringify(all) %>" @add-to-cart="updateCart">
         </searchbar>
-        <% for (part in all) { %>
-            <productlist :part="<%= JSON.stringify(all[part]) %>" @add-To-Cart="updateCart">
-            </productlist>
-            <% }; %>
     </div>
 
 

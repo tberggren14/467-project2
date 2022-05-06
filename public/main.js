@@ -18,7 +18,6 @@ const app = Vue.createApp({
             });
         },
         removeCart(part) {
-            console.log(part)
             var temp = this.cart;
             this.cart = [];
             for (x of temp) {
@@ -26,11 +25,9 @@ const app = Vue.createApp({
                     this.cart.push(x)
                 }
             }
-            axios.post('http://localhost:3000/getParts', {
+            axios.post('http://localhost:3000/newCart', {
                 cart: this.cart,
-                
             });
-
         },
     }
 })

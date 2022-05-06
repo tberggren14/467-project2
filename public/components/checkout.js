@@ -8,6 +8,7 @@ app.component('checkout', {
                     {{ part.description }} <br>
                     \${{ part.price }} <br>
                     {{ part.weight }}lbs <br>
+                    Quantity in cart: {{ part.quantity }}
                     <button @click ="removeItem(part)">Delete</button>
                 </div>
                 <div v-if= "cart.length != 0">
@@ -108,7 +109,6 @@ app.component('checkout', {
                         order: this.order,
                     });
                 }
-                return
             });
         }
     },
@@ -116,7 +116,7 @@ app.component('checkout', {
         amount() {
             var x = 0;
             for (part of this.cart) {
-                x += part.price * 100  // JS has werid math
+                x += part.price * part.quantity * 100  // JS has werid math
             }
             return x / 100
         },

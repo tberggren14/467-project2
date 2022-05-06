@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const axios = require('axios');
 
+
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
-let cart = [];
+var cart = [];
 const part = require('./controllers/parts');
 app.get('/getParts', (req, res) => {
   part.getAll((list) => {
@@ -75,13 +76,15 @@ app.get('/orders', (req, res) => {
 })
 
 var orderid;
-app.post(`/updatestatus`, (req, res) => {
+app.post(`/order`, (req, res) => {
+  orderid = req.body.orderid;
+  console.log(orderid);
   let newStatus = 'closed';
   let sql = `UPDATE customerorder
   SET
       status = '${newStatus}'
       
-  WHERE orderid = ${req.params.id}`;
+  WHERE orderid = ${req.body.orderid}`;
   connection.query(sql, (err, result) => {
     if(err) throw err;
     console.log(result);
@@ -107,9 +110,11 @@ app.post('/getParts', (req, res) => {
   res.render('checkout.ejs',{cart})
 })
 
+
 app.post('/newCart', (req, res) => {
   cart = req.body.cart;
-  res.render('checkout.ejs', { cart })
+  console.log(JSON.stringify(cart))
+  res.redirect('/checkout')
 })
 
 

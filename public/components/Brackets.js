@@ -34,7 +34,6 @@ app.component('brackets', {
         async newBrackets() {
             if (this.minweight === '' || this.maxweight === '' || this.cost === '') {
                 alert('Please put in the wieght and cost for the item.')
-                else
 
                 return
             }
