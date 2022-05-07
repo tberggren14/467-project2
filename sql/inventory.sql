@@ -4,7 +4,6 @@ create table Category
   CName nvarchar(33),
   is Deleted bit default 'False' 
   );
-  
   create table Location
 (
   LId uniqueidentifier primary key,
@@ -18,7 +17,6 @@ create table Brand
   BName nvarchar(55),
   is Deleted bit default 'False' 
   );
-  
 create table Usertab
 (
   userId uniqueidentifier primary key,
@@ -28,7 +26,6 @@ create table Usertab
   password text, 
   is Deleted bit default 'False' 
   );
-  
   create table item
 (
   itemId uniqueidentifier primary key,
@@ -44,5 +41,3 @@ create table Usertab
   itemQuantity int,
   is Deleted bit default 'False' 
   );
-  
-  
